@@ -15,11 +15,15 @@ var http = require('http'),
 	  Server = require('mongodb').Server,
 	  CollectionDriver = require('./collectionDriver').CollectionDriver,
    	routes = require('./routes'),
-  	bodyparser = require('body-parser');
+  	bodyparser = require('body-parser'),
+   
+    ejs = require('ejs'),
+    ejs.open = '{{',
+    ejs.close = '}}';
 	
 var app = express();
 
-app.engine('.html', require('ejs').renderFile);
+app.engine('.html', ejs.renderFile);
 
 var mongoHost = "localhost";
 var mongoPort = 27017;
