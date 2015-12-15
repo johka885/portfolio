@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    {{include head.html}}
+	</head>
+
+	<body>
+    {{include menu.html}}
+    <div class="main-content">
+      <div class="infobox col-xs-5 col-sm-4 col-md-3 contact-info"> 
+        <h1>Contact information</h1>  
+        
+        <img src="http://www.engr.uconn.edu/~gelyko/images/people_pic/anonymous.png">
+        <h3>Johan Karlsson</h3>
+        <div class="contact-info-inner">
+          <div class="address">
+            <b>Address:</b>  <br>
+            Nyponstigen 6  <br>
+            590 44 Rimforsa <br>
+            Sweden
+          </div>
+          
+          <div class="phone">
+            <b>Phone:</b><br>
+            +46 736 509 083
+          </div>          
+          
+          <div class="email">
+            <b>Email:</b><br>
+            johka885(a)student.liu.se
+          </div>
+        </div>
+      </div>
+      <div class="infobox col-xs-6 col-sm-4 col-md-3 contact"> 
+        <h1>Email</h1>    
+        <form> 
+          <div class="form-group">
+            <label for="input-name">Name</label>
+            <input type="text" class="form-control" id="input-name" placeholder="Name">
+          </div>
+          <div class="form-group">
+            <label for="input-name">Email address</label>
+            <input type="email" class="form-control" id="input-email" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="input-message">Message</label>
+            <textarea type="password" class="form-control" id="input-message" placeholder="Enter message..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+      </div>
+    </div>
+	</body>
+</html>

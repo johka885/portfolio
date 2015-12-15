@@ -14,6 +14,9 @@ jQuery(document).ready( function($){
     $.ajax({
       url: page,
       success: function(res){
+        
+        console.log( $.parseHTML(res) );
+      
         clearTimeout(timeout);
         nextPage = res;
         slider();
@@ -39,7 +42,7 @@ jQuery(document).ready( function($){
       $("body").css("overflow-y", "hidden");
 
       var body = $('<div id="body-mock">' + nextPage.replace(/^[\s\S]*<body.*?>|<\/body>[\s\S]*$/ig, '') + '</div>');
-      var mainContent = $("body > .main-content");
+      var mainContent = $("body > .main-content").css("top", 0);
       mainContent.addClass("slide-out");
       var tempContent = $("<div>");
       $("body").append(tempContent);
@@ -57,7 +60,7 @@ jQuery(document).ready( function($){
         mainContent.remove();
         $("body").css("overflow-y", "auto");
         loading = false;
-      }, 2200);
+      }, 2050);
   }
   
   /************
@@ -72,6 +75,17 @@ jQuery(document).ready( function($){
     $(this).parent().addClass("active").siblings().removeClass("active");    
     loadPage(this.href);
   });
+  
+  //TODO: onSubmit contactform
+  
+  /*******************************
+   * code to be run on DOMReady  *
+   *******************************/ 
+  
+   $(".navbar-nav li").addClass( function(){
+     var a = $(this).children()[0];
+     return (a.href == window.location) ? "active" : "";
+   });
 });
 
 

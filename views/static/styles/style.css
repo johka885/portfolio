@@ -11,21 +11,23 @@ body{
 }
 
 .infobox{
-  background-color: rgba(255,255,255,0.8);
+  background-color: white;
   display: inline-block;
   float: none;  
   border-radius: 5px;
   margin: 20px;
   height: 500px;
+  vertical-align: bottom;
 }
 
 .infobox h1{
-  background-color: #C12A2A;
-    width: 110%;
-    margin-left: -5%;
+    background-color: #C12A2A;
+    width: calc(100% + 40px);
+    margin-left: -20px;
     border-radius: 5px;
     color: #FFDBDB;
     padding: 10px 0px;
+    text-align: center;
 }
 
 nav.navbar-default{
@@ -47,14 +49,14 @@ nav.navbar-default{
 
 .slide-out{
   transition: 2s;
-  margin-left: -2000px;
-  margin-right: 2000px;
+  margin-left: -100%;
+  margin-right: 100%;
   position: relative;
 }
 
 .pre-slide-in{
-  margin-left: 2000px;
-  margin-right: -2000px;
+  margin-left: 100%;
+  margin-right: -100%;
   position: relative;  
 }
 
@@ -158,4 +160,38 @@ nav.navbar-default{
 .navbar .navbar-nav > .active > a:focus{
   background-color: initial;
   color: white;
+}
+
+
+.contact{
+  text-align: left;
+}
+
+.contact form{
+  padding: 10px;
+}
+
+.contact textarea{
+  min-height: 155px;
+  resize: none;
+}
+
+.contact-info{
+  margin-right: 100px;
+}
+
+.contact-info img{
+  height: 175px;
+}
+
+.contact-info .contact-info-inner > * {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    margin: 10px 15px;
+}
+
+.contact-info .contact-info-inner > .email{
+  position: relative; 
+  left: -44px;
 }

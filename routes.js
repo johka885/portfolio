@@ -9,8 +9,12 @@
  * */
 
 function routes(app, collectionDriver){
-  app.get('/johan', function (req, res){
-    res.render("johan.html");
+  app.get('/about', function (req, res){
+    res.render("about.html");
+  });
+  
+  app.get('/contact', function (req, res){
+    res.render("contact.html");
   });
   
   app.get('/', function (req, res){
