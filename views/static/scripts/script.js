@@ -10,13 +10,13 @@ jQuery(document).ready( function($){
     slides in the final page clicked as soon as the previous 
     page has finished sliding in.
   */
-  function loadPage(page){
+  function loadPage(page,direction){
     $.ajax({
       url: page,
       success: function(res){
         clearTimeout(timeout);
         nextPage = res;
-        slider();
+        slider(direction);
       }
     });
   }
@@ -29,21 +29,22 @@ jQuery(document).ready( function($){
     Slides out the contents of the previous page
     and then slides in the contents of the new page
   */
-  function slider(){
+  function slider(direction){
       if( loading ) { 
-        timeout = setTimeout(slider, 100); 
+        timeout = setTimeout(slider, 100, direction); 
         return;
       }    
       loading = true;
+      var inverted = direction == "left" ? "right" : "left";
       
       $("body").css("overflow-y", "hidden");
 
       var body = $('<div id="body-mock">' + nextPage.replace(/^[\s\S]*<body.*?>|<\/body>[\s\S]*$/ig, '') + '</div>');
       var mainContent = $("body > .main-content").css("top", 0);
-      mainContent.addClass("slide-out");
+      mainContent.addClass("slide-out-" + direction);
       var tempContent = $("<div>");
       $("body").append(tempContent);
-      tempContent.html($(body).find(".main-content").html()).addClass("pre-slide-in");
+      tempContent.html($(body).find(".main-content").html()).addClass("pre-slide-in-" + inverted);
       
       var offset = tempContent.offset();
       offset.top = mainContent.offset().top;
@@ -53,7 +54,7 @@ jQuery(document).ready( function($){
 
       tempContent.addClass("main-content");
       setTimeout(function(){ 
-        tempContent.removeClass("pre-slide-in slide-in").css("top", 0); 
+        tempContent.removeClass("pre-slide-in-" + inverted + " slide-in").css("top", 0); 
         mainContent.remove();
         $("body").css("overflow-y", "auto");
         loading = false;
@@ -69,8 +70,10 @@ jQuery(document).ready( function($){
   */
   $(".navbar-nav").on("click", "a", function(event){
     event.preventDefault();
-    $(this).parent().addClass("active").siblings().removeClass("active");    
-    loadPage(this.href);
+    var parent = $(this).parent();
+    var direction = parent.siblings(".active").index() < parent.index() ? "left" : "right";
+    parent.addClass("active").siblings().removeClass("active"); 
+    loadPage(this.href, direction);
   });
   
   //TODO: onSubmit contactform

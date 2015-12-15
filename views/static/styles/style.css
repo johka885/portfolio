@@ -47,16 +47,29 @@ nav.navbar-default{
   display: inline-block;
 }
 
-.slide-out{
+.slide-out-left{
   transition: 2s;
   margin-left: -100%;
   margin-right: 100%;
   position: relative;
 }
 
-.pre-slide-in{
+.slide-out-right{
+  transition: 2s;
   margin-left: 100%;
   margin-right: -100%;
+  position: relative;
+}
+
+.pre-slide-in-right{
+  margin-left: 100%;
+  margin-right: -100%;
+  position: relative;  
+}
+
+.pre-slide-in-left{
+  margin-left: -100%;
+  margin-right: 100%;
   position: relative;  
 }
 
