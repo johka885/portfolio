@@ -14,9 +14,6 @@ jQuery(document).ready( function($){
     $.ajax({
       url: page,
       success: function(res){
-        
-        console.log( $.parseHTML(res) );
-      
         clearTimeout(timeout);
         nextPage = res;
         slider();

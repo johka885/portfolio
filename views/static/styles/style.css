@@ -176,7 +176,7 @@ nav.navbar-default{
   resize: none;
 }
 
-.contact-info{
+@media min-width(768px) .contact-info{
   margin-right: 100px;
 }
 
