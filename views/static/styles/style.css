@@ -25,8 +25,9 @@ body{
     width: calc(100% + 40px);
     margin-left: -20px;
     border-radius: 5px;
-    color: #FFDBDB;
-    padding: 10px 0px;
+    color: #FFDBDB;    
+    padding: 20px 0px;
+    margin-top: 0px;
     text-align: center;
 }
 

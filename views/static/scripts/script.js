@@ -1,5 +1,4 @@
-jQuery(document).ready( function($){
-
+﻿jQuery(document).ready( function($){
   /*************
    * Functions *
    *************/
@@ -37,9 +36,10 @@ jQuery(document).ready( function($){
       loading = true;
       var inverted = direction == "left" ? "right" : "left";
       
-      $("body").css("overflow-y", "hidden");
+      var scrollBarVisible = $("nav").outerHeight() + $(".main-content").outerHeight() > window.innerHeight;       
+      if(!scrollBarVisible) $("body").css("overflow-y", "hidden");
 
-      var body = $('<div id="body-mock">' + nextPage.replace(/^[\s\S]*<body.*?>|<\/body>[\s\S]*$/ig, '') + '</div>');
+      var body = $('<div id="body-mock">' + nextPage.replace(/^.*<body.*?>|<\/body>.*$/ig, '') + '</div>');
       var mainContent = $("body > .main-content").css("top", 0);
       mainContent.addClass("slide-out-" + direction);
       var tempContent = $("<div>");
@@ -86,6 +86,31 @@ jQuery(document).ready( function($){
      var a = $(this).children()[0];
      return (a.href == window.location) ? "active" : "";
    });
+   
+   
+   /****************
+    * For teh lulz *
+    ****************/
+   console.log("%cGreetings fellow developer ☻", "color:white; background:#222; padding: 5px; font-size: 16pt;");
+   
+   /* Much fun. Very dancy. Wow. */
+   FUN_MODE = false; 
+   if( FUN_MODE )
+   (function pulse(object){
+    var intensity = 2 + parseInt(Math.random()*5);
+    $(object).animate({
+        top: "-=" + intensity,
+        left: "-=" + intensity,
+        width: "+=" + intensity*2,
+        height: "+=" + intensity*2
+    },200).animate({
+            top: "+=" + intensity,
+            left: "+=" + intensity,
+            width: "-=" + intensity*2,
+            height: "-=" + intensity*2
+        }, 200,function(){pulse(object)});
+
+   })("nav");
 });
 
 
