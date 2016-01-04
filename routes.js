@@ -17,6 +17,14 @@ function routes(app, collectionDriver){
     res.render("contact.html");
   });
   
+  app.get('/cv', function (req, res){
+    res.render("cv.html");
+  });
+  
+  app.get('/portfolio', function (req, res){
+    res.render("portfolio.html");
+  });
+  
   app.get('/', function (req, res){
     res.render("index.html");
   });

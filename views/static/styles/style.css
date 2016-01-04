@@ -16,7 +16,7 @@ body{
   float: none;  
   border-radius: 5px;
   margin: 20px;
-  height: 500px;
+  min-height: 500px;
   vertical-align: bottom;
 }
 
@@ -79,6 +79,7 @@ nav.navbar-default{
   margin-left: 0px;
   margin-right: 0px;
 }
+
 
 @media (min-width: 768px){
   .navbar .navbar-collapse, nav .container-fluid{
@@ -171,7 +172,7 @@ nav.navbar-default{
 }
 
 
-.navbar .navbar-nav > .active > a:focus{
+.navbar .navbar-nav > .active > a:focus, .navbar .navbar-nav>.active>a {
   background-color: initial;
   color: white;
 }
@@ -208,4 +209,87 @@ nav.navbar-default{
 .contact-info .contact-info-inner > .email{
   position: relative; 
   left: -44px;
+}
+
+#cv .address, #cv .phone, #cv .email{
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+#cv hr{
+  border-color: #222;
+}
+
+@media(max-width 646px){
+  #cv .phone{
+    padding-right: 50px;
+  }
+}
+@media(min-width: 647px){
+  #cv .address{
+    padding-left: 20px;
+  }
+}
+
+#cv h4.cv-title{
+  float: left;
+}
+
+#cv .job-list{
+  clear: both;
+}
+
+#cv .period{
+  float: left;
+  width: 20%;
+  text-align: left;
+}
+
+#cv .period, #cv .big-section{
+  margin-left: 5%;
+}
+
+#cv .description{
+  float: right;
+  text-align: left;
+  width: 60%;
+}
+
+#cv .job{
+  padding-top: 15px;
+}
+
+#cv .job, #cv .job-list + *{
+  clear: both;
+}
+
+#cv .big-section{
+  padding-top: 25px;
+  text-align: left;
+}
+
+@media(min-width: 854px){
+  #cv-inner{
+    padding: 0px 0px;
+  }
+}
+
+@media(min-width: 1261px){
+  #cv-inner{
+    padding: 0px 50px;
+  }
+}
+
+@media(min-width: 1440px){
+  #cv-inner{
+    padding: 0px 100px;
+  }
+}
+
+@media(min-width: 1610px){
+  #cv-inner{
+    padding: 0px 150px;
+  }
 }
