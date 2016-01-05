@@ -2,14 +2,26 @@ html,body{
   width: 100%;
   height: 100%;
   text-align: center;
-  overflow-x: hidden;
+  min-width: 777px;  
 }
 
-body{
-  background: url('/images/background.jpg');
+body{  
+  overflow-y: scroll;
+  background: url(/images/background-small.jpg);
   background-size: cover;
 }
-
+/*
+body::after {
+  content: "";
+  opacity: 0.95;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: -1;   
+}
+*/
 .infobox{
   background-color: white;
   display: inline-block;
@@ -17,7 +29,7 @@ body{
   border-radius: 5px;
   margin: 20px;
   min-height: 500px;
-  vertical-align: bottom;
+  vertical-align: top;
 }
 
 .infobox h1{
@@ -29,6 +41,10 @@ body{
     padding: 20px 0px;
     margin-top: 0px;
     text-align: center;
+}
+
+nav{
+  z-index: 2;
 }
 
 nav.navbar-default{
@@ -48,36 +64,19 @@ nav.navbar-default{
   display: inline-block;
 }
 
-.slide-out-left{
-  transition: 2s;
-  margin-left: -100%;
-  margin-right: 100%;
-  position: relative;
+.pre-slide-in-bottom{
+  margin-top: 100%;
+  position: absolute;  
 }
 
-.slide-out-right{
-  transition: 2s;
-  margin-left: 100%;
-  margin-right: -100%;
-  position: relative;
-}
-
-.pre-slide-in-right{
-  margin-left: 100%;
-  margin-right: -100%;
-  position: relative;  
-}
-
-.pre-slide-in-left{
-  margin-left: -100%;
-  margin-right: 100%;
-  position: relative;  
+.pre-slide-in-top{
+  margin-top: -100%;
+  position: absolute;  
 }
 
 .slide-in{
-  transition: 2s;
-  margin-left: 0px;
-  margin-right: 0px;
+  transition: 1.5s;
+  margin-top: 0px;
 }
 
 
@@ -211,17 +210,29 @@ nav.navbar-default{
   left: -44px;
 }
 
+  @media(max-width: 882px){
+    .contact-info .contact-info-inner > * {
+      position: relative;
+      left: -20px;
+    }
+    .contact-info .contact-info-inner > .email {
+      position: relative;
+      left: 11px;
+    }
+  }
+
 #cv .address, #cv .phone, #cv .email{
   display: inline-block;
   vertical-align: top;
-  margin-left: 30px;
+  margin: 0px 15px;
   margin-top: 10px;
+  text-align: left;
 }
 
 #cv hr{
   border-color: #222;
 }
-
+/*
 @media(max-width 646px){
   #cv .phone{
     padding-right: 50px;
@@ -231,6 +242,10 @@ nav.navbar-default{
   #cv .address{
     padding-left: 20px;
   }
+}*/
+
+#cv h4{
+  font-weight: 700;
 }
 
 #cv h4.cv-title{
@@ -276,6 +291,20 @@ nav.navbar-default{
   }
 }
 
+.spacing{
+  padding: 10px 0px;
+}
+
+#cv img{
+  width: 25%;
+}
+
+@media(min-width: 961px){
+  #cv-inner{
+    padding: 0px 50px;
+  }
+}
+
 @media(min-width: 1261px){
   #cv-inner{
     padding: 0px 50px;
@@ -284,12 +313,55 @@ nav.navbar-default{
 
 @media(min-width: 1440px){
   #cv-inner{
-    padding: 0px 100px;
+    padding: 0px 75px;
   }
 }
 
 @media(min-width: 1610px){
   #cv-inner{
-    padding: 0px 150px;
+    padding: 0px 100px;
   }
+}
+
+@media(max-width: 985px){
+  #cv h4{
+    font-size: 28px;
+  }
+  html, body{
+    font-size: 18px;
+  }
+}
+
+.infobox.skills{
+  height: 500px;
+}
+
+#skill-chart{
+  width: 100%;
+  height: calc(100% - 104px); 
+  overflow: hidden;
+}
+
+.skills #left-arrow, .skills #right-arrow{
+  height: 64px;
+  width: 32px;
+  top: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.skills #left-arrow{
+  left: 0;
+  border-right: 28px solid black;
+  border-bottom: 32px solid transparent;
+  border-top: 32px solid transparent;
+}
+
+.skills #right-arrow{
+  right: 0;
+  border-left: 28px solid black;
+  border-bottom: 32px solid transparent;
+  border-top: 32px solid transparent;
 }

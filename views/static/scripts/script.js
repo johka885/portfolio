@@ -33,32 +33,56 @@
         timeout = setTimeout(slider, 100, direction); 
         return;
       }    
-      loading = true;
-      var inverted = direction == "left" ? "right" : "left";
+      loading = 2;
+      var inverted = direction == "top" ? "bottom" : "top";
       
-      var scrollBarVisible = $("nav").outerHeight() + $(".main-content").outerHeight() > window.innerHeight;       
-      if(!scrollBarVisible) $("body").css("overflow-y", "hidden");
-
+      //Make loaded page parseable by jQuery
       var body = $('<div id="body-mock">' + nextPage.replace(/^.*<body.*?>|<\/body>.*$/ig, '') + '</div>');
-      var mainContent = $("body > .main-content").css("top", 0);
-      mainContent.addClass("slide-out-" + direction);
+      
+      var mainContent = $("body > .main-content");
+      
       var tempContent = $("<div>");
       $("body").append(tempContent);
-      tempContent.html($(body).find(".main-content").html()).addClass("pre-slide-in-" + inverted);
-      
-      var offset = tempContent.offset();
-      offset.top = mainContent.offset().top;
-      tempContent.offset(offset);
-      
-      tempContent.addClass("slide-in");
-
       tempContent.addClass("main-content");
-      setTimeout(function(){ 
+      tempContent.html($(body).find(".main-content").html())
+      
+      if(direction == "top"){
+        mainContent.css("transition", "1.5s");
+        mainContent.css("margin-top", -mainContent.height() - $("#navbar").height() + "px");
+        mainContent.css("position", "absolute");
+        
+        tempContent.css("margin-top", tempContent.height() + $("#navbar").height() + "px");
+        tempContent.css("position", "absolute");        
+        setTimeout(function(){tempContent.css("transition", "1.5s"); tempContent.css("margin-top", "0px");},50);
+        
+      } else {
+        mainContent.css("transition", "1.5s");
+        mainContent.css("margin-top", mainContent.height() + $("#navbar").height() + "px");
+        mainContent.css("position", "absolute");     
+        
+        tempContent.css("margin-top", -tempContent.height() - $("#navbar").height() + "px");
+        tempContent.css("position", "absolute");        
+        setTimeout(function(){tempContent.css("transition", "1.5s"); tempContent.css("margin-top", "0px");},50);
+      }
+      
+      //TODO Set loading true on transition-end instead of timeout
+      /*
+      tempContent.on("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend", function(){
         tempContent.removeClass("pre-slide-in-" + inverted + " slide-in").css("top", 0); 
-        mainContent.remove();
         $("body").css("overflow-y", "auto");
+        loading--;
+      });
+      
+      mainContent.on("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend", function(){
+        loading--;        
+        mainContent.remove();
+      });*/
+      
+      setTimeout(function(){ 
+        tempContent.removeClass("pre-slide-in-" + inverted + " slide-in"); 
+        mainContent.remove();
         loading = false;
-      }, 2050);
+      }, 1500);
   }
   
   /************
@@ -71,9 +95,17 @@
   $(".navbar-nav").on("click", "a", function(event){
     event.preventDefault();
     var parent = $(this).parent();
-    var direction = parent.siblings(".active").index() < parent.index() ? "left" : "right";
+    var direction = parent.siblings(".active").index() < parent.index() ? "top" : "bottom";
     parent.addClass("active").siblings().removeClass("active"); 
     loadPage(this.href, direction);
+  });
+  
+  $("body").on("click", "#left-arrow", function(){
+      $("#skill-chart").trigger("bar-prev");
+  });
+  
+  $("body").on("click", "#right-arrow", function(){
+      $("#skill-chart").trigger("bar-next");    
   });
   
   //TODO: onSubmit contactform

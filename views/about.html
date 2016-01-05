@@ -7,15 +7,35 @@
 	<body>
     {{include menu.html}}
     <div class="main-content">
-      <div class="infobox col-xs-10 col-sm-4 col-md-3">
-        <h1>JOHAN</h1>
+      <div class="infobox col-xs-10 col-sm-10 col-md-10 col-lg-4">
+        <h1>About</h1>
+        <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+        </p>
       </div>
-      <div class="infobox col-xs-10 col-sm-4 col-md-3">
-        <h1>LUDVIG</h1>
+      <div class="infobox skills col-xs-10 col-sm-10 col-md-10 col-lg-7">
+        <h1>Skills</h1>
+        <div id="skill-chart"></div>    
+        <div id="left-arrow"></div>
+        <div id="right-arrow"></div>
       </div>
-      <div class="infobox col-xs-10 col-sm-4 col-md-3">
-        <h1>KARLSSON</h1>
-      </div>
+      <script>
+        function htmlDecode(input){
+          var e = document.createElement('div');
+          e.innerHTML = input;
+          return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+        }
+        
+        var options = htmlDecode("{{=options}}");
+          var scripts = document.getElementsByTagName( 'script' );
+          var me = scripts[ scripts.length - 1 ];
+        var f = function(){ $(me).parent().find("#skill-chart").bars(JSON.parse(options));};
+        setTimeout(f, 300);
+        
+      </script>
     </div>
 	</body>
 </html>
