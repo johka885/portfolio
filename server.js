@@ -8,18 +8,18 @@
  *
  * */
 
-var http = require('http'),
-    express = require('express'),
-    path = require('path'),
+var http = require('http');
+var express = require('express');
+var path = require('path');
     /*MongoClient = require('mongodb').MongoClient,
 	  Server = require('mongodb').Server,
 	  CollectionDriver = require('./collectionDriver').CollectionDriver,*/
-   	routes = require('./routes'),
-  	bodyparser = require('body-parser'),
+var routes = require('./routes');
+var bodyparser = require('body-parser');
    
-    ejs = require('ejs'),
-    ejs.open = '{{',
-    ejs.close = '}}';
+var ejs = require('ejs');
+ejs.open = '{{';
+ejs.close = '}}';
 	
 var app = express();
 
