@@ -10,10 +10,10 @@
 
 var http = require('http'),
     express = require('express'),
-    path = require('path');
-    MongoClient = require('mongodb').MongoClient,
+    path = require('path'),
+    /*MongoClient = require('mongodb').MongoClient,
 	  Server = require('mongodb').Server,
-	  CollectionDriver = require('./collectionDriver').CollectionDriver,
+	  CollectionDriver = require('./collectionDriver').CollectionDriver,*/
    	routes = require('./routes'),
   	bodyparser = require('body-parser'),
    
@@ -35,6 +35,7 @@ app.use(express.static(__dirname + '/views/static/'));
 
 
 function setupDB(callback){
+  return callback();
 var mongoClient = new MongoClient(new Server(mongoHost, mongoPort));
 mongoClient.open(function (err, mongoClient) {
     if (!mongoClient) {
@@ -49,11 +50,11 @@ mongoClient.open(function (err, mongoClient) {
 
 function run(callback){
 		setupDB(function(){
-		routes.routes(app, collectionDriver);
-		var port = process.env.PORT || 3000;
-		app.listen(port);
-		console.log('Express server listening on port ' + port);
-		callback();
+      routes.routes(app, collectionDriver);
+      var port = process.env.PORT || 3000;
+      app.listen(port);
+      console.log('Express server listening on port ' + port);
+      callback();
 		});
 }
 
