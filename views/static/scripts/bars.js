@@ -71,22 +71,34 @@ $.fn.extend({
 
         $el.append($cur);
 
+        //Fixes CSS not rendering correctly on IE after animation
+        function IEfixer($el){
+          $(this).find("label").css("left", "50%");
+          $(this).find("label").css("top", "50%");
+          $(this).find("label").css("transform", "translateX(-50%) translateY(-50%)");
+          $(this).find("label").css("-ms-transform", "translateX(-50%) translateY(-50%)");
+          $(this).find("label").css("-webkit-transform", "translateX(-50%) translateY(-50%)");
+        }
+                
         (function(element, margin, height, time) {
+          var animator = element.velocity || element.animate;
           setTimeout(function() {
-            element.animate({
+            animator.bind(element)({
               "marginTop": margin - 20 + "px",
               "height": 20 + height + "%"
             }, {
               duration: 400,
+              step: IEfixer,
               complete: function() {
-                $(this).animate({
+                animator.bind(element)({
                   "marginTop": margin + "px",
                   "height": height + "%"
                 }, {
                   duration: 200,
                   complete: function() {
                     if ($(this).is(":last-child")) $(this).trigger("bar-finished");
-                  }
+                  },
+                  step: IEfixer,
                 });
               },
               easing: "linear"
@@ -97,13 +109,15 @@ $.fn.extend({
 
       $el.find("label").css("position", "relative");
       $el.find("label").css("display", "inline-block");
+      $el.find("label").css("width", "100%");
       $el.find("label").css("left", "50%");
       $el.find("label").css("top", "50%");
       $el.find("label").css("transform", "translateX(-50%) translateY(-50%)");
+      $el.find("label").css("-ms-transform", "translateX(-50%) translateY(-50%)");
+      $el.find("label").css("-webkit-transform", "translateX(-50%) translateY(-50%)");
       $el.find("label").css("color", "white");
       $el.find("label").css("text-shadow", "1px 1px 0 #000, -1px 1px 0 #000 , 1px -1px 0 #000, -1px -1px 0 #000");
-      $el.find("label").css("text-align", "center")
-      $el.find("label").css("width", "100%");
+      $el.find("label").css("text-align", "center");
       $el.css("font-size", "20px");
            
       var $title = $("<div class=title>");
@@ -135,7 +149,8 @@ $.fn.extend({
     });
 
     $(this).on("bar-prev", function() {
-      i = (i + 1) % options.bars.length;
+      i--;
+      i = i < 0 ? options.bars.length - 1: i;
       displayBars(options, i, $(this));
     });
     return $(this);

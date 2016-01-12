@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    {{include head.html}}
+	</head>
+
+	<body>
+    {{include menu.html}}
+    <div class="main-content">      
+      <div class="infobox col-xs-10 col-sm-10 col-md-10 col-lg-10">
+        <h1>Projects</h1>
+        <div id="project-list"></div>
+      </div>
+      <script>
+        function listProjects($el, projects){
+          projects.forEach(function(project){
+            var $div = $("<div>");
+            $div.addClass("project");
+            $div.css("background", "url(" + project.image + ")");
+            $div.css("background-size", "100%");
+            $div.css("width", 320);
+            $div.css("height", 240);
+            $div.css("display", "inline-block");
+            $div.css("margin", "20px");
+            $div.css("vertical-align", "top");
+            
+            $div_inner = $("<div>");
+            $div_inner.css("width", "100%");
+            $div_inner.css("max-height", "20%");
+            $div_inner.css("background", "rgba(0,0,0,0.8)");
+            $div_inner.css("color", "white");
+            $div_inner.css("text-shadow", "1px 1px 0 #000, -1px 1px 0 #000 , 1px -1px 0 #000, -1px -1px 0 #000");
+            $div_inner.css("padding", "8px");
+            $div_inner.css("cursor", "default");
+            $div_inner.css("overflow", "hidden");
+            
+            $div_inner.html("<span>" + project.title + "</span><br><br>" + project.description + "<br><br><a href=" + project.link + ">" + project.title + " on Github" + "</a>");
+            $div_inner.find("span").css("font-size", "24px");
+            
+            (function($div_inner){$div.hover(function(){
+              $div_inner.css("height", "100%");
+              $div_inner.css("max-height", "100%");
+              $div_inner.css("overflow", "visible");
+            }, function(){
+              $div_inner.css("overflow", "hidden");
+              $div_inner.css("max-height", "20%");
+            });})($div_inner);
+            
+            $div.append($div_inner);
+            $el.append($div);
+            
+          });
+        }
+      
+        function htmlDecode(input){
+          var e = document.createElement('div');
+          e.innerHTML = input;
+          return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+        }
+        
+        var projects = htmlDecode("{{=projects}}");
+          var scripts = document.getElementsByTagName( 'script' );
+          var me = scripts[ scripts.length - 1 ];
+        var f = function(){ listProjects($(me).parent().find("#project-list"), JSON.parse(projects))};
+        setTimeout(f, 300);
+        
+      </script>
+    </div>
+	</body>
+</html>

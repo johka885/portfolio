@@ -10,6 +10,11 @@ body{
   background: url(/images/background-small.jpg);
   background-size: cover;
 }
+
+.main-content{
+  width: 100%;
+}
+
 /*
 body::after {
   content: "";
@@ -22,6 +27,7 @@ body::after {
   z-index: -1;   
 }
 */
+
 .infobox{
   background-color: white;
   display: inline-block;
@@ -78,7 +84,16 @@ nav.navbar-default{
   transition: 1.5s;
   margin-top: 0px;
 }
+nav.navbar-default .navbar-nav > .active > a, nav.navbar-default .navbar-nav > .active > a:hover, nav.navbar-default .navbar-nav > .active > a:focus{
+  background: transparent;
+}
 
+nav *:focus, nav *:hover{
+  background: initial !important;
+}
+nav a{
+  outline: 0 !important;
+}
 
 @media (min-width: 768px){
   .navbar .navbar-collapse, nav .container-fluid{
@@ -349,6 +364,8 @@ nav.navbar-default{
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
   cursor: pointer;
 }
 
