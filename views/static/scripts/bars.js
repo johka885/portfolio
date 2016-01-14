@@ -60,14 +60,17 @@ $.fn.extend({
         var margin = (100 - height) / 100 * $el.height();
 
         $cur.css("height", "100%");
-        $cur.css("margin", $el.height() + "px " + (width / length / 2) + "px 0px 0px");
+        $cur.css("margin", "0px " + (width / length / 2) + "px 0px 0px");
+        $cur.css("transform", "translateY(" + ($el.height()) + "px)");
         $cur.width(width);
         $cur.css("display", "inline-block");
         $cur.css("vertical-align", "top");
-        $cur.css("z-index", "-2");
+        //$cur.css("z-index", "-2");
         $cur.css("background-color", generateColor(options.hue));
         $cur.css("text-align", "initial");
+        $cur.css("transition", ".4s");
         $cur.html("<label>" + bar.label + "</label>");
+        $cur.css("height", (height) + "%");              
 
         $el.append($cur);
 
@@ -83,15 +86,21 @@ $.fn.extend({
         (function(element, margin, height, time) {
           var animator = element.velocity || element.animate;
           setTimeout(function() {
-            animator.bind(element)({
-              "marginTop": margin - 20 + "px",
-              "height": 20 + height + "%"
+            element.css("transform", "translateY(" + (margin - 20) + "px)");
+            setTimeout(function(){
+              element.css("transform", "translateY(" + (margin) + "px)");
+            }, 333);
+            /*animator.bind(element)({
+              //"marginTop": margin - 20 + "px",
+              "transform": "translateY(" + (margin - 20) + "px)",
+              "height": (height) + "%"
             }, {
               duration: 400,
               step: IEfixer,
               complete: function() {
                 animator.bind(element)({
-                  "marginTop": margin + "px",
+                  //"marginTop": margin + "px",
+                  //"transform": "translateY(" + (margin) + "px)",
                   "height": height + "%"
                 }, {
                   duration: 200,
@@ -102,9 +111,9 @@ $.fn.extend({
                 });
               },
               easing: "linear"
-            });
+            });*/
           }, time);
-        })($cur, margin, height, i * 800);
+        })($cur, margin, height, i * 400);
       });
 
       $el.find("label").css("position", "relative");

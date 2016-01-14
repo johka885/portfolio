@@ -51,7 +51,7 @@ mongoClient.open(function (err, mongoClient) {
 function run(callback){
 		setupDB(function(){
       routes.routes(app, collectionDriver);
-      var port = process.env.PORT || 3000;
+      var port = process.env.PORT || 80;
       app.listen(port);
       console.log('Express server listening on port ' + port);
       callback();

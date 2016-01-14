@@ -49,9 +49,6 @@ body::after {
     text-align: center;
 }
 
-nav{
-  z-index: 2;
-}
 
 nav.navbar-default{
   background-color: rgba(0,0,0,0.65);
@@ -59,10 +56,18 @@ nav.navbar-default{
   border: none;
   border-bottom: 10px #222;
   border-radius: 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 2;
 }
 
 .navbar .navbar-collapse{
   text-align: center;
+}
+
+nav.navbar-default .navbar-nav>li>a:focus {
+    color: #FFF;
 }
 
 .navbar .navbar-collapse .navbar-nav{ 
@@ -71,19 +76,24 @@ nav.navbar-default{
 }
 
 .pre-slide-in-bottom{
-  margin-top: 100%;
+  /*margin-top: 100%;*/
+  transform: translateY(100%);
   position: absolute;  
 }
 
 .pre-slide-in-top{
-  margin-top: -100%;
+  /*margin-top: -100%;*/
+  transform: translateY(-100%);
   position: absolute;  
 }
 
 .slide-in{
   transition: 1.5s;
-  margin-top: 0px;
+  /*margin-top: 0px;*/
+  transform: translateY(0%);
 }
+
+
 nav.navbar-default .navbar-nav > .active > a, nav.navbar-default .navbar-nav > .active > a:hover, nav.navbar-default .navbar-nav > .active > a:focus{
   background: transparent;
 }
@@ -142,6 +152,10 @@ nav a{
     background: inherit;
     color: white;
   }
+  
+  .main-content{
+    margin-top: 120px
+  }
 }
 
 @media (min-width: 1315px){
@@ -182,6 +196,9 @@ nav a{
   .navbar .navbar-nav > li.active > a:hover{
     background: inherit;
     color: white;
+  }  
+  .main-content{
+    margin-top: 180px
   }
 }
 

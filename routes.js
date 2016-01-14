@@ -22,7 +22,7 @@ function routes(app, collectionDriver){
     options.autoswitch = false;
 
     options.bars.push({
-      title: "Languages",
+      title: "<span data-string='languages'>Languages</span>",
       elements: [],
       order: "asc"
     });
@@ -62,7 +62,7 @@ function routes(app, collectionDriver){
     
     
     options.bars.push({
-      title: "Frameworks & Libraries",
+      title: "<span data-string='frameworks-libraries'>Frameworks & Libraries</span>",
       elements: [],
       order: "asc"
     });
@@ -96,7 +96,7 @@ function routes(app, collectionDriver){
     });
     
     options.bars.push({
-      title: "Methodologies",
+      title: "<span data-string='methodologies'>Methodologies</span>",
       elements: [],
       order: "asc"
     });
@@ -117,16 +117,24 @@ function routes(app, collectionDriver){
       value: 38
     });
     options.bars[2].elements.push({
+      label: "AJAX",
+      value: 36
+    });
+    options.bars[2].elements.push({
       label: "TDD",
-      value: 26
+      value: 24
     });
     options.bars[2].elements.push({
       label: "Lean",
-      value: 29
+      value: 26
+    });
+    options.bars[2].elements.push({
+      label: "SOAP",
+      value: 28
     });
     
     options.bars.push({
-      title: "Tools",
+      title: "<span data-string='tools'>Tools</span>",
       elements: [],
       order: "asc"
     });

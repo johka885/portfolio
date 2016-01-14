@@ -3,12 +3,47 @@
    * Functions *
    *************/
    
+  var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+  function preventDefault(e) {
+    e = e || window.event;
+    if (e.preventDefault)
+        e.preventDefault();
+    e.returnValue = false;  
+  }
+
+  function preventDefaultForScrollKeys(e) {
+      if (keys[e.keyCode]) {
+          preventDefault(e);
+          return false;
+      }
+  }
+
+  function disableScroll() {
+    if (window.addEventListener) // older FF
+        window.addEventListener('DOMMouseScroll', preventDefault, false);
+    window.onwheel = preventDefault; // modern standard
+    window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+    window.ontouchmove  = preventDefault; // mobile
+    document.onkeydown  = preventDefaultForScrollKeys;
+  }
+
+  function enableScroll() {
+      if (window.removeEventListener)
+          window.removeEventListener('DOMMouseScroll', preventDefault, false);
+      window.onmousewheel = document.onmousewheel = null; 
+      window.onwheel = null; 
+      window.ontouchmove = null;  
+      document.onkeydown = null;  
+  }
+
   /*
     Loads a page over AJAX and slides in its contents into view.
     Clears previous calls that has yet not loaded and then 
     slides in the final page clicked as soon as the previous 
     page has finished sliding in.
   */
+  
   function loadPage(page,direction){
     $.ajax({
       url: page,
@@ -41,28 +76,34 @@
       
       var mainContent = $("body > .main-content");
       
+      disableScroll();
+      
       var tempContent = $("<div>");
       $("body").append(tempContent);
       tempContent.addClass("main-content");
-      tempContent.html($(body).find(".main-content").html())
+      tempContent.html($(body).find(".main-content").html());
+      
+      translate();
       
       if(direction == "top"){
-        mainContent.css("transition", "1.5s");
-        mainContent.css("margin-top", -mainContent.height() - $("#navbar").height() + "px");
+        var pixels = Math.max(Math.abs((-mainContent.height() - $("#navbar").height())), 0);
+        mainContent.css("transition", "1s ease-out");
+        mainContent.css("transform", "translateY(" + (-pixels) + "px)");
         mainContent.css("position", "absolute");
         
-        tempContent.css("margin-top", tempContent.height() + $("#navbar").height() + "px");
+        tempContent.css("transform", "translateY(" + pixels + "px)");
         tempContent.css("position", "absolute");        
-        setTimeout(function(){tempContent.css("transition", "1.5s"); tempContent.css("margin-top", "0px");},50);
+        setTimeout(function(){tempContent.css("transition", "1s ease-out"); tempContent.css("transform", "translateY(0px)");},50);
         
       } else {
-        mainContent.css("transition", "1.5s");
-        mainContent.css("margin-top", mainContent.height() + $("#navbar").height() + "px");
+        var pixels = Math.max(Math.abs((-tempContent.height() - $("#navbar").height())), 0);
+        mainContent.css("transition", "1s ease-out");
+        mainContent.css("transform", "translateY(" + (100 + pixels) + "px)");
         mainContent.css("position", "absolute");     
         
-        tempContent.css("margin-top", -tempContent.height() - $("#navbar").height() + "px");
+        tempContent.css("transform", "translateY(" + (-pixels) + "px)");
         tempContent.css("position", "absolute");        
-        setTimeout(function(){tempContent.css("transition", "1.5s"); tempContent.css("margin-top", "0px");},50);
+        setTimeout(function(){tempContent.css("transition", "1s ease-out"); tempContent.css("transform", "translateY(0px)");},50);
       }
       
       //TODO Set loading true on transition-end instead of timeout
@@ -82,9 +123,16 @@
         tempContent.removeClass("pre-slide-in-" + inverted + " slide-in"); 
         mainContent.remove();
         loading = false;
-      }, 1500);
+        enableScroll();
+      }, 1000);
   }
   
+  function getDirection(href){
+      var next = $(".nav").find("a[href=\"" + href + "\"]");
+      var current = $(".nav .active a");
+      next.parent().addClass("active").siblings().removeClass("active"); 
+      return current.parent().index() <= next.parent().index() ? "top" : "bottom";
+  }
   /************
    *  Events  *
    ************/ 
@@ -94,18 +142,24 @@
   */
   $(".navbar-nav").on("click", "a", function(event){
     event.preventDefault();
-    var parent = $(this).parent();
-    var direction = parent.siblings(".active").index() < parent.index() ? "top" : "bottom";
-    parent.addClass("active").siblings().removeClass("active"); 
+    var direction = getDirection(this.pathname);
     loadPage(this.href, direction);
+    
+    history.pushState(null, document.title, this.href);
+  });
+  
+  $(window).on("popstate", function(e){
+    loadPage(window.location.pathname, getDirection(window.location.pathname));
   });
   
   $("body").on("click", "#left-arrow", function(){
       $("#skill-chart").trigger("bar-prev");
+      translate();
   });
   
   $("body").on("click", "#right-arrow", function(){
-      $("#skill-chart").trigger("bar-next");    
+      $("#skill-chart").trigger("bar-next");   
+      translate(); 
   });
   
   //TODO: onSubmit contactform
@@ -117,33 +171,10 @@
    $(".navbar-nav li").addClass( function(){
      var a = $(this).children()[0];
      return (a.href == window.location) ? "active" : "";
-   });
+   });   
    
-   
-   /****************
-    * For teh lulz *
-    ****************/
-   console.log("%cGreetings fellow developer ☻", "color:white; background:#222; padding: 5px; font-size: 16pt;");
-   
-   /* Much fun. Very dancy. Wow. */
-   FUN_MODE = false; 
-   if( FUN_MODE )
-   (function pulse(object){
-    var intensity = 2 + parseInt(Math.random()*5);
-    $(object).animate({
-        top: "-=" + intensity,
-        left: "-=" + intensity,
-        width: "+=" + intensity*2,
-        height: "+=" + intensity*2
-    },200).animate({
-            top: "+=" + intensity,
-            left: "+=" + intensity,
-            width: "-=" + intensity*2,
-            height: "-=" + intensity*2
-        }, 200,function(){pulse(object)});
+   $.get("http://ipinfo.io", function(response) {
+    translate(response.country);
+   }, "jsonp");
 
-   })("nav");
 });
-
-
-
