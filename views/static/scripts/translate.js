@@ -43,7 +43,10 @@ var wordlist = {
     "venezia-title": "Telefonförsäljare, Venezia Personal AB, Linköping",
     "venezia-desc-1": "Försäljning av telfoniabonnemang per telefon",
     "venezia-desc-2": "Arbetat med kundservicen",
-    "venezia-desc-3": "Utsedd till månadens bästa säljare flera gånger"
+    "venezia-desc-3": "Utsedd till månadens bästa säljare flera gånger",
+    
+    "skills-list": ["AJAX", " Android", " AngularJS", " Bootstrap", " CORS", " C#", " C++", " CSS", " Django", " Express", " Git", " HTML", " HTTP", " Java", " JavaScript", " JQuery", " JSCoverage", " JSON", " Mocha", " MongoDB", " MySQL", " .NET", " Node.js", " PHP", " Python", " Ruby", " Selenium", " SSH", " WPF", " XML"],
+    
   },
   "en": {
     "contact-information": "Contact information",
@@ -90,6 +93,8 @@ var wordlist = {
     "venezia-desc-1": "Selling mobile cellular subscriptions by phone",
     "venezia-desc-2": "Providing professional customer service",
     "venezia-desc-3": "Appointed as monthly best seller several times"
+    
+    "skills-list": ["AJAX", " Android", " AngularJS", " Bootstrap", " CORS", " C#", " C++", " CSS", " Django", " Express", " Git", " HTML", " HTTP", " Java", " JavaScript", " JQuery", " JSCoverage", " JSON", " Mocha", " MongoDB", " MySQL", " .NET", " Node.js", " PHP", " Python", " Ruby", " Selenium", " SSH", " WPF", " XML"],
     
   }
 };
