@@ -92,9 +92,9 @@ var wordlist = {
     "venezia-title": "Telemarketer, Venezia Personal AB, Linköping, Sweden",
     "venezia-desc-1": "Selling mobile cellular subscriptions by phone",
     "venezia-desc-2": "Providing professional customer service",
-    "venezia-desc-3": "Appointed as monthly best seller several times"
+    "venezia-desc-3": "Appointed as monthly best seller several times",
     
-    "skills-list": ["AJAX", " Android", " AngularJS", " Bootstrap", " CORS", " C#", " C++", " CSS", " Django", " Express", " Git", " HTML", " HTTP", " Java", " JavaScript", " JQuery", " JSCoverage", " JSON", " Mocha", " MongoDB", " MySQL", " .NET", " Node.js", " PHP", " Python", " Ruby", " Selenium", " SSH", " WPF", " XML"],
+    "skills-list": ["AJAX", " Android", " AngularJS", " Bootstrap", " CORS", " C#", " C++", " CSS", " Django", " Express", " Git", " HTML", " HTTP", " Java", " JavaScript", " JQuery", " JSCoverage", " JSON", " Mocha", " MongoDB", " MySQL", " .NET", " Node.js", " PHP", " Python", " Ruby", " Selenium", " SSH", " WPF", " XML"]
     
   }
 };
