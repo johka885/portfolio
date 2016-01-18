@@ -118,7 +118,8 @@ $.fn.extend({
 
       $el.find("label").css("position", "relative");
       $el.find("label").css("display", "inline-block");
-      $el.find("label").css("word-break", "break-word");
+      $el.find("label").css("word-break", "break-all");
+      $el.find("label").css("word-wrap", "break-word");
       $el.find("label").css("width", "100%");
       $el.find("label").css("left", "50%");
       $el.find("label").css("top", "50%");
