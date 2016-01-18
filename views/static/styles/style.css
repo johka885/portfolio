@@ -230,16 +230,21 @@ nav a{
   height: 175px;
 }
 
+.contact-info-inner{
+    display: table;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+}
+
 .contact-info .contact-info-inner > * {
-    display: inline-block;
-    vertical-align: top;
     text-align: left;
     margin: 10px 15px;
+    float: left;
 }
 
 .contact-info .contact-info-inner > .email{
-  position: relative; 
-  left: -44px;
+  clear: both;
 }
 
   @media(max-width: 882px){

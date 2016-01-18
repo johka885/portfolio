@@ -113,9 +113,9 @@ var wordlist = {
     
     "lang-skills": "Language skills",
     "lang-1-title": "Swedish",
-    "lang-1-desc": "Native proficiency",
+    "lang-1-desc": "Native",
     "lang-2-title": "English",
-    "lang-2-desc": "Full professional proficiency",
+    "lang-2-desc": "Fluent",
     
     "adecco-title": "Consultant, Adecco Student AB, Linköping, Sweden",
     "adecco-desc-1": "Working with daily production of confectionery",
@@ -143,7 +143,7 @@ function translate(lang){
   
   activeLanguage = "en";
   $("[data-string]").each( function(){
-    var translation = wordlist[activeLanguage][this.dataset.string] || wordlist["en"][this.dataset.string];
+    var translation = wordlist[activeLanguage][this.getAttribute("data-string")] || wordlist["en"][this.getAttribute("data-string")];
     if( /input/i.test(this.tagName) || /textarea/i.test(this.tagName )){
       $(this).attr("placeholder", translation);
     } else {
