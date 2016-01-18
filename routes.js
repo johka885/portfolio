@@ -35,7 +35,7 @@ function routes(app, collectionDriver){
       value: 32
     });
     options.bars[0].elements.push({
-      label: "CSS",
+      label: "CSS + LESS",
       value: 38
     });
     options.bars[0].elements.push({
@@ -152,7 +152,11 @@ function routes(app, collectionDriver){
     });
     options.bars[3].elements.push({
       label: "SVN",
-      value: 8
+      value: 11
+    });
+    options.bars[3].elements.push({
+      label: "Photoshop",
+      value: 17
     });
     options.bars[3].elements.push({
       label: "Selenium",

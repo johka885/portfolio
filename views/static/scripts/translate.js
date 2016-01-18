@@ -14,7 +14,6 @@ var wordlist = {
     "message": "Meddelande",
     "message-placeholder": "Skriv meddelande",
     "send": "Skicka",
-    "my-email": "johan@j-karlsson.com",
     "name": "Namn",
     
     "home": "Hem",
@@ -36,6 +35,21 @@ var wordlist = {
     "july": "juli",
     "aug": "aug",
     
+    "work-experience": "Arbetslivserfarenhet",
+    "education": "Utbildning",
+    
+    "edu-1-title": "Linköping Universitet, Linköping",
+    "edu-1-desc": "Kandidatutbilding Innovativ programmering",
+    
+    "edu-2-title": "Berzeliusskolan, Linköping",
+    "edu-2-desc": "Naturvetenskapliga programmet",
+    
+    "lang-skills": "Språk",
+    "lang-1-title": "Svenska",
+    "lang-1-desc": "Modersmål",
+    "lang-2-title": "Engelska",
+    "lang-2-desc": "Flytande",
+    
     "adecco-title": "Konsult, Adecco Student AB, Linköping",
     "adecco-desc-1": "Produktionsarbete inom livsmedelindustrin",
     "adecco-desc-2": "Montering av webbkameror och annan elektronik",
@@ -46,7 +60,11 @@ var wordlist = {
     "venezia-desc-3": "Utsedd till månadens bästa säljare flera gånger",
     
     "skills-list": ["AJAX", " Android", " AngularJS", " Bootstrap", " CORS", " C#", " C++", " CSS", " Django", " Express", " Git", " HTML", " HTTP", " Java", " JavaScript", " JQuery", " JSCoverage", " JSON", " Mocha", " MongoDB", " MySQL", " .NET", " Node.js", " PHP", " Python", " Ruby", " Selenium", " SSH", " WPF", " XML"],
-    
+     
+    "other": "Övrigt",
+   
+    "langs-fws-techs": "Programmeringsspråk, ramverk och tekniker",
+    "comp-skills": "Datorkunskaper"
   },
   "en": {
     "contact-information": "Contact information",
@@ -62,7 +80,7 @@ var wordlist = {
     "message": "Message",
     "message-placeholder": "Enter message",
     "send": "Send",
-    "my-email": "johan@j-karlsson.com",
+    "my-email": "johan@jkarlsson.eu",
     "name": "Name",
     
     "home": "Home",
@@ -85,6 +103,20 @@ var wordlist = {
     "july": "July",
     "aug": "Aug",
     
+    "education": "Education",
+    
+    "edu-1-title": "Linköping University, Linköping, Sweden",
+    "edu-1-desc": "BSc in Computer Science",
+    
+    "edu-2-title": "Berzeliusskolan, Linköping, Sweden",
+    "edu-2-desc": "The Natural Sciences Programme",
+    
+    "lang-skills": "Language skills",
+    "lang-1-title": "Swedish",
+    "lang-1-desc": "Native proficiency",
+    "lang-2-title": "English",
+    "lang-2-desc": "Full professional proficiency",
+    
     "adecco-title": "Consultant, Adecco Student AB, Linköping, Sweden",
     "adecco-desc-1": "Working with daily production of confectionery",
     "adecco-desc-2": "Assembling web cameras and other electronics",
@@ -94,9 +126,13 @@ var wordlist = {
     "venezia-desc-2": "Providing professional customer service",
     "venezia-desc-3": "Appointed as monthly best seller several times",
     
-    "skills-list": ["AJAX", " Android", " AngularJS", " Bootstrap", " CORS", " C#", " C++", " CSS", " Django", " Express", " Git", " HTML", " HTTP", " Java", " JavaScript", " JQuery", " JSCoverage", " JSON", " Mocha", " MongoDB", " MySQL", " .NET", " Node.js", " PHP", " Python", " Ruby", " Selenium", " SSH", " WPF", " XML"]
-    
-  }
+    "langs-fws-techs": "Programming languages, frameworks, techniques",
+    "skills-list": ["AJAX", " Android", " AngularJS", " Bootstrap", " CORS", " C#", " C++", " CSS", " Django", " Express", " Git", " HTML", " HTTP", " Java", " JavaScript", " JQuery", " JSCoverage", " JSON", " Mocha", " MongoDB", " MySQL", " .NET", " Node.js", " PHP", " Python", " Ruby", " Selenium", " SSH", " WPF", " XML"],
+    "other": "Other",
+    "other-os": "Linux, OS X, Windows",
+    "other-ms": "MS Excel, MS PowerPoint, MS Word",
+    "comp-skills": "Computer Skills"
+    }
 };
 
 var activeLanguage = "en";
@@ -107,10 +143,11 @@ function translate(lang){
   
   activeLanguage = "en";
   $("[data-string]").each( function(){
-    if( /input/i.test(this.tagName) ){
-      $(this).val(wordlist[activeLanguage][this.dataset.string]);
+    var translation = wordlist[activeLanguage][this.dataset.string] || wordlist["en"][this.dataset.string];
+    if( /input/i.test(this.tagName) || /textarea/i.test(this.tagName )){
+      $(this).attr("placeholder", translation);
     } else {
-      $(this).text(wordlist[activeLanguage][this.dataset.string]);
+      $(this).text(translation);
     }
   });
 }
