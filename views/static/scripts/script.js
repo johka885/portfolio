@@ -140,12 +140,14 @@
   /*
     Loads a new page when a menu item is clicked
   */
-  $(".navbar-nav").on("click", "a", function(event){
-    event.preventDefault();
-    var direction = getDirection(this.pathname);
-    loadPage(this.href, direction);
-    
-    history.pushState(null, document.title, this.href);
+  $("body").on("click", "a", function(event){
+    if(this.hostname == window.location.hostname && !this.href.match(/cv-johan-karlsson/)){
+      event.preventDefault();
+      var direction = getDirection(this.pathname);
+      loadPage(this.href, direction);
+      
+      history.pushState(null, document.title, this.href);
+    }
   });
   
   $(window).on("popstate", function(e){
@@ -164,6 +166,18 @@
   
   //TODO: onSubmit contactform
   
+  $("form").on("submit", function(e){
+    e.preventDefault();
+    var formData = $(this).serialize();
+    $.ajax({
+      url: "/sendmail",
+      data: formData,
+      type: "post",
+      success: function(response){
+        console.log(response);
+      }
+    });
+  });
   /*******************************
    * code to be run on DOMReady  *
    *******************************/ 
@@ -175,6 +189,8 @@
    
    $.get("http://ipinfo.io", function(response) {
     translate(response.country);
-   }, "jsonp");
+   }, "json").fail(function(){
+    translate("en");
+   });
 
 });

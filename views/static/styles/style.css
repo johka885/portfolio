@@ -7,15 +7,24 @@ html,body{
 
 body{  
   overflow-y: scroll;
-  background: url(/images/background-small.jpg);
-  background-size: cover;
 }
 
 .main-content{
   width: 100%;
 }
 
-/*
+.frontpage{
+  font-size: 16px;
+  text-align: left;
+  padding: 20px;
+}
+
+.about-content{
+  text-align: left;
+  padding: 0px 30px;
+}
+
+
 body::after {
   content: "";
   opacity: 0.95;
@@ -25,8 +34,10 @@ body::after {
   right: 0;
   position: fixed;
   z-index: -1;   
+  background: url(/images/background-small.jpg);
+  background-size: cover;
 }
-*/
+
 
 .infobox{
   background-color: white;
@@ -247,16 +258,9 @@ nav a{
   clear: both;
 }
 
-  @media(max-width: 882px){
-    .contact-info .contact-info-inner > * {
-      position: relative;
-      left: -20px;
-    }
-    .contact-info .contact-info-inner > .email {
-      position: relative;
-      left: 11px;
-    }
-  }
+@media max-width(900px) .contact-info{
+  display: table-caption;
+}
 
 #cv .address, #cv .phone, #cv .email{
   display: inline-block;
@@ -283,6 +287,14 @@ nav a{
 
 #cv h4{
   font-weight: 700;
+}
+
+#cv span{
+  font-size: 16px;
+}
+
+#cv a .glyphicon{
+  font-size: 20px;
 }
 
 #cv h4.cv-title{

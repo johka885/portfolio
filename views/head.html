@@ -1,20 +1,23 @@
+<meta id="viewport" name="viewport">
 <meta charset="utf-8">
-<meta id="viewport" name="viewport" content="width=800, initial-scale=1">
 <title>Portfolio | Johan Karlsson</title>
 <script>
   var mvp = document.getElementById('viewport');
-  
+    
   if (screen.width < 825) {
     var scale= screen.width / 825;
     mvp.setAttribute('content','width=800, initial-scale=' + scale);
   }
-  else if(screen.width >= 825 && screen.width < 1024){
+  else if(window.innerWidth >= 825 && screen.width < 1024){
     var scale= screen.width / 1024;
     mvp.setAttribute('content','width=1024, initial-scale=' + scale);
   }
   else{
     mvp.setAttribute('content','width=' + screen.width + ', initial-scale=1');				
-  }  
+  }
+
+  var script = document.getElementsByTagName("script")[0];
+  script.parentElement.removeChild(script);
 </script>
 <link rel="stylesheet" href="/styles/bootstrap.min.css">	
 <link rel="stylesheet" href="/styles/style.css">

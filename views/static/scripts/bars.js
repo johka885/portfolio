@@ -69,7 +69,7 @@ $.fn.extend({
         $cur.css("background-color", generateColor(options.hue));
         $cur.css("text-align", "initial");
         $cur.css("transition", ".4s");
-        $cur.html("<label>" + bar.label + "</label>");
+        $cur.html("<label>" + bar.label.replace(/\s/g, "<br>") + "</label>");
         $cur.css("height", (height) + "%");              
 
         $el.append($cur);
@@ -118,8 +118,11 @@ $.fn.extend({
 
       $el.find("label").css("position", "relative");
       $el.find("label").css("display", "inline-block");
-      $el.find("label").css("word-break", "break-all");
-      $el.find("label").css("word-wrap", "break-word");
+      $el.find("label").css("word-break", "break-word");
+      
+      if( window.navigator.userAgent.indexOf("msie") )
+        $el.find("label").css("word-wrap", "break-word");
+        
       $el.find("label").css("width", "100%");
       $el.find("label").css("left", "50%");
       $el.find("label").css("top", "50%");

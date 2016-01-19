@@ -63,8 +63,13 @@ var wordlist = {
      
     "other": "Övrigt",
    
-    "langs-fws-techs": "Programmeringsspråk, ramverk och tekniker",
-    "comp-skills": "Datorkunskaper"
+    "langs" : "Programmeringsspråk",
+    "frameworks": "Ramverk",
+    "tools": "Verktyg:",
+    "techniques": "Tekniker",
+    "platforms": "Plattformar",
+    "platforms-content": "Android, Linux, OS X, Windows", 
+    "comp-skills": "Tekniska kunskaper"
   },
   "en": {
     "contact-information": "Contact information",
@@ -126,12 +131,18 @@ var wordlist = {
     "venezia-desc-2": "Providing professional customer service",
     "venezia-desc-3": "Appointed as monthly best seller several times",
     
-    "langs-fws-techs": "Programming languages, frameworks, techniques",
-    "skills-list": ["AJAX", " Android", " AngularJS", " Bootstrap", " CORS", " C#", " C++", " CSS", " Django", " Express", " Git", " HTML", " HTTP", " Java", " JavaScript", " JQuery", " JSCoverage", " JSON", " Mocha", " MongoDB", " MySQL", " .NET", " Node.js", " PHP", " Python", " Ruby", " Selenium", " SSH", " WPF", " XML"],
-    "other": "Other",
-    "other-os": "Linux, OS X, Windows",
-    "other-ms": "MS Excel, MS PowerPoint, MS Word",
-    "comp-skills": "Computer Skills"
+    "langs" : "Languages:",
+    "langs-content": "C#, C++, CSS, HTML, Java, JavaScript, MySQL, PHP, Python",
+    "frameworks": "Frameworks:",
+    "frameworks-content": "AngularJS, Bootstrap, jQuery, Mocha, .NET, Node.js",
+    "tools": "Tools:",
+    "tools-content": "Android studio, Git, Selenium, SVN, Visual studio",
+    "techniques": "Techniques:",
+    "techniques-content": "Agile, AJAX, Lean, Pair Programming , REST, SOAP, TDD",
+    "platforms": "Platforms:",
+    "platforms-content": "Android, Linux, OS X, Windows",  
+    
+    "comp-skills": "Technical Skills"
     }
 };
 

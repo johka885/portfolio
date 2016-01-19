@@ -8,7 +8,7 @@
  *
  * */
 
-function routes(app, collectionDriver){
+function routes(app, collectionDriver, mailTransport){
   app.get('/about', function (req, res){
   
   
@@ -27,7 +27,7 @@ function routes(app, collectionDriver){
       order: "asc"
     });
     options.bars[0].elements.push({
-      label: "JavaScript",
+      label: "Java&shy;Script",
       value: 46
     });
     options.bars[0].elements.push({
@@ -35,7 +35,7 @@ function routes(app, collectionDriver){
       value: 32
     });
     options.bars[0].elements.push({
-      label: "CSS + LESS",
+      label: "CSS & LESS",
       value: 38
     });
     options.bars[0].elements.push({
@@ -56,7 +56,7 @@ function routes(app, collectionDriver){
       value: 30
     });
     options.bars[0].elements.push({
-      label: "Python",
+      label: "Pyt&shy;hon",
       value: 22
     });
     
@@ -67,7 +67,7 @@ function routes(app, collectionDriver){
       order: "asc"
     });
     options.bars[1].elements.push({
-      label: "Bootstrap",
+      label: "Boot&shy;strap",
       value: 39
     });
     options.bars[1].elements.push({
@@ -101,7 +101,7 @@ function routes(app, collectionDriver){
       order: "asc"
     });
     options.bars[2].elements.push({
-      label: "Pair Programming",
+      label: "Pair Program&shy;ming",
       value: 18
     });
     options.bars[2].elements.push({
@@ -140,27 +140,27 @@ function routes(app, collectionDriver){
     });
     options.bars[3].elements.push({
       label: "Visual Studio",
-      value: 33
+      value: 36
     });
     options.bars[3].elements.push({
       label: "Android Studio",
-      value: 27
+      value: 33
     });
     options.bars[3].elements.push({
       label: "GIT",
-      value: 25
+      value: 30
     });
     options.bars[3].elements.push({
       label: "SVN",
-      value: 11
+      value: 12
     });
     options.bars[3].elements.push({
-      label: "Photoshop",
-      value: 17
-    });
-    options.bars[3].elements.push({
-      label: "Selenium",
+      label: "Photo&shy;shop",
       value: 20
+    });
+    options.bars[3].elements.push({
+      label: "Sele&shy;nium",
+      value: 25
     });
     
     //end temporary
@@ -198,7 +198,7 @@ function routes(app, collectionDriver){
     projects.push({
       title: "Rimforsa FK",
       link: "https://github.com/johka885/rfk-webpage",
-      description: "Webpage for a local organization",
+      description: "Website for a local organization",
       image: "/images/projects/rfk-webpage.png"   
     });
     
@@ -217,6 +217,24 @@ function routes(app, collectionDriver){
     });
     
     res.render("portfolio.html", {projects: JSON.stringify(projects)});
+  });
+  
+  app.post('/sendmail', function(req,res){
+  
+    var mailOptions = {
+    from: 'Website <johan@jkarlsson.eu>',
+    to: 'johan@jkarlsson.eu',
+    subject: 'Contactform',
+    text: req.body.message,
+    html: req.body.name + "<" + req.body.email + "> wrote <br>" +  req.body.message
+    };
+    
+    mailTransport.sendMail(mailOptions, function(error, info){
+      if(error){
+          res.sendStatus(500);
+      }
+    res.sendStatus(200);
+    });
   });
   
   app.get('/fruitpopper', function (req, res){

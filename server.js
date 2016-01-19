@@ -16,6 +16,20 @@ var path = require('path');
 	  CollectionDriver = require('./collectionDriver').CollectionDriver,*/
 var routes = require('./routes');
 var bodyparser = require('body-parser');
+
+var nodemailer = require('nodemailer');
+
+var smtpConfig = {
+    host: 'smtp.zoho.com',
+    port: 465,
+    secure: true, // use SSL
+    auth: {
+        user: 'johan@jkarlsson.eu',
+        pass: 'qe5a7uf91'
+    }
+};
+
+var mailTransport = nodemailer.createTransport(smtpConfig);
    
 var ejs = require('ejs');
 ejs.open = '{{';
@@ -50,7 +64,7 @@ mongoClient.open(function (err, mongoClient) {
 
 function run(callback){
 		setupDB(function(){
-      routes.routes(app, collectionDriver);
+      routes.routes(app, collectionDriver, mailTransport);
       var port = process.env.PORT || 3000;
       app.listen(port);
       console.log('Express server listening on port ' + port);
