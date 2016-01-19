@@ -132,7 +132,7 @@ var wordlist = {
     "venezia-desc-3": "Appointed as monthly best seller several times",
     
     "langs" : "Languages:",
-    "langs-content": "C#, C++, CSS, HTML, Java, JavaScript, MySQL, PHP, Python",
+    "langs-content": "C#, C++, CSS, HTML, Java, JavaScript, MySQL, PHP, Python, Regexp, XML",
     "frameworks": "Frameworks:",
     "frameworks-content": "AngularJS, Bootstrap, jQuery, Mocha, .NET, Node.js",
     "tools": "Tools:",
