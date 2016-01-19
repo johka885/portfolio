@@ -141,7 +141,7 @@
     Loads a new page when a menu item is clicked
   */
   $("body").on("click", "a", function(event){
-    if(this.hostname == window.location.hostname && !this.href.match(/cv-johan-karlsson/)){
+    if(this.hostname == window.location.hostname && !this.href.match(/cv-johan-karlsson/) && !this.href.match(/fruitpopper/)){
       event.preventDefault();
       var direction = getDirection(this.pathname);
       loadPage(this.href, direction);

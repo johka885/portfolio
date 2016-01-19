@@ -162,6 +162,10 @@ function routes(app, collectionDriver, mailTransport){
       label: "Sele&shy;nium",
       value: 25
     });
+    options.bars[3].elements.push({
+      label: "Notepad++",
+      value: 40
+    });
     
     //end temporary
     
@@ -192,14 +196,16 @@ function routes(app, collectionDriver, mailTransport){
       title: "Fruit Popper",
       link: "https://github.com/johka885/fruitpopper",
       description: "JavaScript game",
-      image: "/images/projects/fruitpopper.png"
+      image: "/images/projects/fruitpopper.png",
+      live: "/fruitpopper"
     });
     
     projects.push({
       title: "Rimforsa FK",
       link: "https://github.com/johka885/rfk-webpage",
       description: "Website for a local organization",
-      image: "/images/projects/rfk-webpage.png"   
+      image: "/images/projects/rfk-webpage.png",   
+      live: "http://www.rimforsafk.se"
     });
     
     projects.push({
@@ -216,17 +222,24 @@ function routes(app, collectionDriver, mailTransport){
       image: "/images/projects/sleep-pal.png"           
     });
     
+    projects.push({
+      title: "Chess Mate",
+      link: "https://github.com/johka885/chess-mate",
+      description: "Simple chess game in C#",
+      image: "/images/projects/chess-mate.png"
+    });
+    
     res.render("portfolio.html", {projects: JSON.stringify(projects)});
   });
   
   app.post('/sendmail', function(req,res){
   
     var mailOptions = {
-    from: 'Website <johan@jkarlsson.eu>',
-    to: 'johan@jkarlsson.eu',
-    subject: 'Contactform',
-    text: req.body.message,
-    html: req.body.name + "<" + req.body.email + "> wrote <br>" +  req.body.message
+      from: 'Website <johan@jkarlsson.eu>',
+      to: 'johan@jkarlsson.eu',
+      subject: 'Contactform',
+      text: req.body.message,
+      html: req.body.name + "<" + req.body.email + "> wrote <br>" +  req.body.message
     };
     
     mailTransport.sendMail(mailOptions, function(error, info){

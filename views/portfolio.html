@@ -35,6 +35,11 @@
             $div_inner.css("overflow", "hidden");
             
             $div_inner.html("<span>" + project.title + "</span><br><br>" + project.description + "<br><br><a href=" + project.link + ">" + project.title + " on Github" + "</a>");
+            
+            if(project.live){
+              $div_inner.html($div_inner.html() + "<br><br><a href=" + project.live + ">Live version</a>");
+            }
+            
             $div_inner.find("span").css("font-size", "24px");
             
             (function($div_inner){$div.hover(function(){
@@ -59,8 +64,8 @@
         }
         
         var projects = htmlDecode("{{=projects}}");
-          var scripts = document.getElementsByTagName( 'script' );
-          var me = scripts[ scripts.length - 1 ];
+        var scripts = document.getElementsByTagName( 'script' );
+        var me = scripts[ scripts.length - 1 ];
         var f = function(){ listProjects($(me).parent().find("#project-list"), JSON.parse(projects))};
         setTimeout(f, 300);
         
