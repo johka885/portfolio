@@ -233,6 +233,11 @@ nav a{
   resize: none;
 }
 
+.contact button{    
+  float: left;
+  margin-right: 10px;  
+}
+
 @media min-width(768px) .contact-info{
   margin-right: 100px;
 }
@@ -415,4 +420,29 @@ nav a{
   border-left: 28px solid black;
   border-bottom: 32px solid transparent;
   border-top: 32px solid transparent;
+}
+
+.progress{
+  margin-top: 22px;
+}
+
+.status-bar p{
+  font-size: 20px;
+  font-weight: bold;    
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+
+.status-bar p.has-success{
+  color: #3c763d;
+}
+
+.status-bar p.has-error{
+  color: #a94442;
+}
+
+.status-bar.loading{
+  margin-top: 22px;
+  padding-right: 80px;
 }

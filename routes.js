@@ -233,7 +233,7 @@ function routes(app, collectionDriver, mailTransport){
       if(error){
           res.sendStatus(500);
       }
-    res.sendStatus(200);
+      res.sendStatus(200);
     });
   });
   

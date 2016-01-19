@@ -166,18 +166,57 @@
   
   //TODO: onSubmit contactform
   
-  $("form").on("submit", function(e){
+  var loadingPercentage = 0;
+  var sent;
+  var response;
+  
+  $("body").on("submit", "form", function(e){
     e.preventDefault();
     var formData = $(this).serialize();
     $.ajax({
       url: "/sendmail",
       data: formData,
       type: "post",
-      success: function(response){
-        console.log(response);
+      success: function(res){
+        response = res;
       }
-    });
+    });    
+    waitToSend();
   });
+  
+  function waitToSend(){
+    if( !sent ){    
+      var $progress = $("<div class='progress'></div>");
+      var $progressBar = $("<div class='progress-bar'></div>");
+      var msg = "Skickar";
+      
+      $progressBar.css("width", loadingPercentage + "%");
+      $progress.html( $progressBar );
+      $(".status-bar").html( $progress );
+      
+      loadingPercentage += 0.4 + Math.random()/4 ;
+      
+      var timeout = Math.floor(Math.random()*40) + 10;
+      setTimeout( waitToSend, timeout );
+      
+      if( loadingPercentage >= 100 ) {
+        sent = true;
+      }
+    } else {
+      setTimeout( setStatusText, 300 );
+    }
+  }
+
+  function setStatusText(){
+    console.log(response);
+    if( response == "OK" ){
+      $(".status-bar").append( "<p>Success! <br>I'll reply as soon as possible.</p>" );
+      $(".status-bar p").addClass("has-success");
+    } else {
+      $(".status-bar").append( "<p>Something went wrong, try again!</p>" );  
+      $(".status-bar p").addClass("has-error");    
+    }
+  }
   /*******************************
    * code to be run on DOMReady  *
    *******************************/ 

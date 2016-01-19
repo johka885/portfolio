@@ -50,26 +50,26 @@ app.use(express.static(__dirname + '/views/static/'));
 
 function setupDB(callback){
   return callback();
-var mongoClient = new MongoClient(new Server(mongoHost, mongoPort));
-mongoClient.open(function (err, mongoClient) {
-    if (!mongoClient) {
-        console.error("Error! Exiting... Must start MongoDB first");
-        process.exit(1);
-    }
-    var db = mongoClient.db("portfolio");
-    collectionDriver = new CollectionDriver(db);
-	  callback();
-});
+  var mongoClient = new MongoClient(new Server(mongoHost, mongoPort));
+  mongoClient.open(function (err, mongoClient) {
+      if (!mongoClient) {
+          console.error("Error! Exiting... Must start MongoDB first");
+          process.exit(1);
+      }
+      var db = mongoClient.db("portfolio");
+      collectionDriver = new CollectionDriver(db);
+      callback();
+  });
 }
 
 function run(callback){
-		setupDB(function(){
-      routes.routes(app, collectionDriver, mailTransport);
-      var port = process.env.PORT || 3000;
-      app.listen(port);
-      console.log('Express server listening on port ' + port);
-      callback();
-		});
+  setupDB(function(){
+    routes.routes(app, collectionDriver, mailTransport);
+    var port = process.env.PORT || 3000;
+    app.listen(port);
+    console.log('Express server listening on port ' + port);
+    callback();
+  });
 }
 
 exports.run = run;
